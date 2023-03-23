@@ -1,0 +1,16 @@
+{
+  "name": "itpmproject-learnelite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon Code/backend/server.js"
+  },
+  "author": "Group80",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
+  }
+}
