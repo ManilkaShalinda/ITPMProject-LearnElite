@@ -2,7 +2,7 @@
 
 # Sustainbility Development Goal - Quality Education
 
-# Y3.S2.WE.IT.02.02
+# Y3.S2.WE.IT.02.02 - Group80
 
 ### Group Leader - IT20617578 - R.N.N Wijenayaka
 ### Member 2 - IT20607128 - R.M.M Shalinda
