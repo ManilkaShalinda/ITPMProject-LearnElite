@@ -9,7 +9,7 @@
 ### Member 3 - IT20602864 - D.I Madusanka
 ### Member 4 - IT20606510 - L.K.R Perera
 
-#Project Description :
+## Project Description :
 
 ## Technical Stack
 ![enter image description here](https://devtechnosys.com/insights/wp-content/uploads/2022/12/Mern-Stack.png)
