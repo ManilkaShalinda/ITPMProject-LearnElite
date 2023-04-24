@@ -14,8 +14,6 @@ const LoginScreen = ()  =>{
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("sirilayya");
-    
     try {
         const config = {
             headers: {
