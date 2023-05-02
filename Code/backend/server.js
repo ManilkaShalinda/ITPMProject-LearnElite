@@ -1,26 +1,31 @@
 const express = require("express");
-const dotenv = require('dotenv');
-const connectDB = require("./config/db");
-const donationRoutes=require('./routes/donationRoutes');
-const userRoutes = require('./routes/userRoutes');
-const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
-
+const dotenv = require("dotenv");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 const app = express();
+const connectDB = require("./config/db");
+const adminRoutes = require("./routes/adminRoutes");
+const userRoutes = require("./routes/userRoutes");
+const submitInnovations = require("./routes/sunmitInnovationRoutes");
+const { notFound, errorHandler } = require("./middleware/errorMiddleware");
+
 dotenv.config();
 connectDB();
 app.use(express.json());
+app.use("*", cors());
 
-app.get('/',(req,res) =>{
-    res.send("API is running..");
+app.get("/", (req, res) => {
+	res.send("API is Running");
 });
 
-app.use('/api/users', userRoutes);
+app.use("/user/admin", adminRoutes);
+app.use("/user",userRoutes)
+app.use("/innovation",submitInnovations);
 
-app.use('/api/donation', donationRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
+app.listen(PORT, console.log(`Server Started on port ${PORT}..`));
 
-app.listen(5000,console.log(`Server started on PORT ${PORT}`));
