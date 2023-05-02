@@ -70,40 +70,40 @@ const postDetails = (pics) => {
   useEffect(() => {}, []);
   return (
   <div>
-    <MainScreen titles="Create a Product">
+    <MainScreen titles="Donation Post">
       <Card>
-        <Card.Header >Add New Product</Card.Header>
+        <Card.Header >Post New Donation</Card.Header>
         <Card.Body>
           <Form onSubmit={submitHandler}>
            
             <Form.Group controlId="title">
-              <Form.Label>Product Name</Form.Label>
+              <Form.Label>Title</Form.Label>
               <Form.Control
                 type="title"
                 value={foodname}
-                placeholder="Enter the food name"
+                placeholder="Enter title"
                 onChange={(e) => setFoodname(e.target.value)}
               />
             </Form.Group>
 
             <Form.Group controlId="title">
-               <Form.Label>Food Price</Form.Label>
+               <Form.Label>Description</Form.Label>
                <Form.Control
                 type="title"
                 value={price}
-                placeholder="Enter the price"
+                placeholder="Enter the donation description"
                 onChange={(e) => setPrice(e.target.value)}
               />
             </Form.Group>
 
      <Form.Group controlId="title">
-     <Form.Label>Dress Category</Form.Label>
+     <Form.Label>Donation Type</Form.Label>
      <div class="form-group col-lg flex-column d-flex" style={{}}>
       <select id="inputState" class="form-control" onChange={(e)=>{setCategory(e.target.value);}} required>
-        <option selected placeholder="">Choose Product...</option>
-        <option>Men</option>
-        <option>Wemen</option>
-        <option>Kids</option>
+        <option selected placeholder="">Choose Type...</option>
+        <option>Type 1</option>
+        <option>Type 2</option>
+        <option>Type 3</option>
       </select>
     </div>
      </Form.Group>
@@ -124,7 +124,7 @@ const postDetails = (pics) => {
             <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
           )}
           <Form.Group controlId="pic">
-            <Form.Label>Profile Picture</Form.Label>
+            <Form.Label>Picture</Form.Label>
             <Form.Control
               onChange={(e) => postDetails(e.target.files[0])}
               id="custom-file"
@@ -136,7 +136,7 @@ const postDetails = (pics) => {
 
         {loading && <Loarding size={50} />}
             <Button type="submit" variant="primary" className="my-4">
-            Create Product
+            Post Donation
             </Button>
             <Button className="mx-5" onClick={resetHandler} variant="danger">
             Reset Feilds

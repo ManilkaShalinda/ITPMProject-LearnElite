@@ -86,43 +86,43 @@ const SingleCategory= ({ match, history }) => {
     <>
      <MainScreen titles="Update">
              <Card>
-        <Card.Header >Update Product</Card.Header>
+        <Card.Header >Update Post</Card.Header>
         <Card.Body>
           <Form onSubmit={updateHandler}>
            
             <Form.Group controlId="title">
-              <Form.Label>Food Name</Form.Label>
+              <Form.Label>Title</Form.Label>
               <Form.Control
                 type="title"
                 value={foodname}
-                placeholder="Enter the food name"
+                placeholder="Enter title"
                 onChange={(e) => setFoodname(e.target.value)}
               />
             </Form.Group>
 
           <Form.Group controlId="title">
-              <Form.Label>Food Price</Form.Label>
+              <Form.Label>Description</Form.Label>
               <Form.Control
                 type="title"
                 value={price}
-                placeholder="Enter the price"
+                placeholder="Enter the Description"
                 onChange={(e) => setPrice(e.target.value)}
               />
             </Form.Group>
         
 
             <Form.Group controlId="content">
-              <Form.Label>Category</Form.Label>
+              <Form.Label>Type</Form.Label>
               <Form.Control
                 type="content"
                 value={category}
-                placeholder="Enter the Category"
+                placeholder="Enter the Type"
                 onChange={(e) => setCategory(e.target.value)}
               />
             </Form.Group>
             
              <Form.Group controlId="pic">
-            <Form.Label>Profile Picture</Form.Label>
+            <Form.Label>Picture</Form.Label>
             <Form.Control
               onChange={(e) => postDetails(e.target.files[0])}
               id="custom-file"

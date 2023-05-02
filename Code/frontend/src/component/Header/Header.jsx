@@ -24,9 +24,9 @@ const Header = ({history,setSearch}) => {
 
   return (
     <div>
-      <Navbar bg="primary" expand="lg" variant='dark'>
+      <Navbar bg="success" expand="lg" variant='dark'>
       <Container>
-        <Navbar.Brand href="/">LAYOUTindex</Navbar.Brand>
+        <Navbar.Brand href="/">LearnElite</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
             <Nav className='m-auto'>
@@ -47,8 +47,10 @@ const Header = ({history,setSearch}) => {
             navbarScroll
           >
             <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Contact Us</Nav.Link>
-            <Nav.Link href="#action2"><Link to='/category'>All Product</Link></Nav.Link>
+            <Nav.Link href="#action2">Courses</Nav.Link>
+            <Nav.Link href="#action2">Events</Nav.Link>
+            <Nav.Link href="#action2">Counseling</Nav.Link>
+            <Nav.Link href="#action2"><Link to='/category'>Donation</Link></Nav.Link>
             <NavDropdown title="Features" id="navbarScrollingDropdown">
               {/* <NavDropdown.Item ><Link to='/category'>Product</Link></NavDropdown.Item> */}
               <NavDropdown.Divider />
