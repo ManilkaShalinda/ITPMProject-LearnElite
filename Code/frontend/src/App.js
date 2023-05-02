@@ -1,24 +1,36 @@
+import React, { useState } from 'react'
 import './App.css';
-import { BrowserRouter, Route, Routes} from "react-router-dom";
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
-import LandingPage from './screens/LandingPage';
-import LoginScreen from './screens/LoginScreen/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
+import Header from './component/Header/Header';
+import { BrowserRouter, Route } from 'react-router-dom'
+import Footer from './component/Footer/Footer';
+import MainPage from './screens/MainPage/MainPage';
+import Category from './screens/Category/Category';
+import LoginPage from './screens/LoginPage/LoginPage';
+import RegisterPage from './screens/RegisterPage/RegisterPage';
+import CreateCategory from './screens/CreateCategory/CreateCategory';
+import SingleCategory from './screens/SingleCategory/SingleCategory';
+import ReactMarkdown from 'react-markdown';
 
-const App =() => (
-  <BrowserRouter>
-    <Header/>
-    <main>
-    <Routes>
-      <Route path='/' element={<LandingPage />}/>
-      <Route path='/login' element={<LoginScreen />}/>
-      <Route path='/register' element={<RegisterScreen />}/>
 
-    </Routes>
-    </main>
+const App = () => {
+ const [search,setSearch] =  useState ("") 
+ console.log(search);
+  return (
+    <BrowserRouter>
+    <Header setSearch={setSearch}/>
+    
+      <main >
+         <Route path='/' component={MainPage} exact />  
+         <Route path='/login' component={LoginPage} />  
+         <Route path='/register' component={RegisterPage} />  
+         <Route path='/category' component={()=> <Category search={search} /> } />  
+         <Route path='/categorycreate' component={CreateCategory} />  
+         <Route path='/categoryUpdate/:id' component={SingleCategory} />  
+
+      </main>
     <Footer/>
-  </BrowserRouter>
-)
+    </BrowserRouter>
+  )
+}
 
-export default App;
+export default App
