@@ -39,18 +39,18 @@ const {userInfo } = userLogin;
     
     <div className='my-5 '>
 
-    <MainScreen titles='Welcome Piumi' >
+    <MainScreen titles='Welcome Manilka' >
         <Link to='/categorycreate'>
-            <Button  style={{marginLeft: 5,marginBottom:6}} size='lg'>Create New Category</Button>
+            <Button  style={{marginLeft: 5,marginBottom:6}} size='lg'>Create New Post</Button>
         </Link>
       <Table responsive>
       <thead>
         <tr>
           <th>#</th>
           <th>Image</th>
-          <th>Product Name</th>
-          <th>Price</th>
-          <th>Category</th>
+          <th>Donation Title</th>
+          <th>Description</th>
+          <th>Type</th>
           <th>Action</th>
         </tr>
       </thead>
