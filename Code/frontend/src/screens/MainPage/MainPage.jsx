@@ -14,7 +14,7 @@ const MainPage = () => {
                 <div className='intro-text'>
                   <div >
                     <h1 className='title'>Welcome to Admin Page</h1>
-                    <p className='subtitle'>One safe place for all category</p>
+                    <p className='subtitle'>LearnElight</p>
                   </div>
                   <div className='buttonContainor'>
                     <a href='/login'>
