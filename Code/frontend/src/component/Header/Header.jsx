@@ -19,7 +19,6 @@ const Header = ({history,setSearch}) => {
 
   const logoutHandler=()=>{
     dispatch(logout());
-    history.push('/');
   }
 
   return (

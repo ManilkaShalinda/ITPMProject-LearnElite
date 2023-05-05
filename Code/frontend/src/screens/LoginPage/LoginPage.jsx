@@ -31,6 +31,7 @@ const LoginPage = ({history}) => {
 }, [history,userInfo]);
 
 console.log(userInfo);
+
 const submitHandler =async (e) =>{
    e.preventDefault();
    dispatch(login(email,password));

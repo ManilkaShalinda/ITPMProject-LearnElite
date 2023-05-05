@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const { connect } = require('mongoose');
 const connectDB = require('./config/db')
 const userRoutes = require ('./routes/userRouter');
+const adminRoutes = require('./routes/adminRouter');
 const categoryRoutes = require('./routes/categoryRouter');
 const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
 const path = require('path'); // nodejs module
@@ -28,6 +29,7 @@ app.use(express.json());
 
 //---------create routes--------------//
 app.use('/api/users',userRoutes);
+app.use('/api/admin', adminRoutes)
 app.use('/api/category', categoryRoutes);
 
 app.use(notFound);
