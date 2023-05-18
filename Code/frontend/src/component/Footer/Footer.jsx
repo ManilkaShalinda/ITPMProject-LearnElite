@@ -28,7 +28,7 @@ const Footer = () => {
             </div>
 
             <div className="col-md-5 mb-md-0 mb-3 text-start">
-              <h5 className="text-uppercase font-weight-bold">About</h5>
+              <h5>About</h5>
               <small>
               Welcome to LearnElight, your one-stop destination for education, donations, events, and counseling. We offer a wide range of educational courses to help you enhance your knowledge and skills, as well as the opportunity to make a difference by contributing to various causes through our donation platform. Stay up-to-date with the latest events in your area and beyond with our event calendar, and access professional counseling services for any of life's challenges. Thank you for visiting us!
               </small>

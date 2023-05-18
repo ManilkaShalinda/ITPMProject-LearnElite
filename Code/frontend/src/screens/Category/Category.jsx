@@ -1,14 +1,9 @@
 import React,{useEffect, useState} from 'react'
-import Card from 'react-bootstrap/Card';
-import Accordion from 'react-bootstrap/Accordion';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Container from 'react-bootstrap/esm/Container';
 import MainScreen from '../../component/MainScreen';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/esm/Button';
 import { useDispatch,useSelector } from 'react-redux';
-import { deleteCategoryAction, listCategory } from '../../actions/categoryAction'
-import ErrorMessage from '../../component/ErrorMessage';
+import { deleteCategoryAction, listCategory } from '../../actions/categoryAction';
 import Table from 'react-bootstrap/Table';
 
 const Category = ({history,search}) => {
@@ -39,7 +34,7 @@ const {userInfo } = userLogin;
     
     <div className='my-5 '>
 
-    <MainScreen titles='Welcome Manilka' >
+    <MainScreen titles='Welcome' >
         <Link to='/categorycreate'>
             <Button  style={{marginLeft: 5,marginBottom:6}} size='lg'>Create New Post</Button>
         </Link>

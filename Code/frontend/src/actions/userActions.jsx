@@ -23,7 +23,7 @@ export const login = (email, password) => async (dispatch) => {
 
     const { data } = await axios.post(
       "/api/users/login",
-      { email, password, isAdmin:true },
+      { email, password, isUser:true },
       config
     );
 
@@ -40,7 +40,7 @@ export const login = (email, password) => async (dispatch) => {
 	
         if(data.type=='admin'){
 			setTimeout(function () {
-				window.location.href = "/";
+				window.location.href = "/category";
 			}, 2000);
 			localStorage.setItem("adminInfo", JSON.stringify(data));
 		}else if(data.type=='user'){

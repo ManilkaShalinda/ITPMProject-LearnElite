@@ -23,7 +23,7 @@ const registerAdmin = asyncHandler(async(req, res) =>{
             _id:admin._id,
             name:admin.name,
             email:admin.email,
-            isUser: admin.isUser,
+            isAdmin: admin.isAdmin,
             pic: admin.pic,
             token: genarateToken(admin._id),
         });

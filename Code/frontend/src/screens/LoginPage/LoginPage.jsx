@@ -15,9 +15,7 @@ import { login } from '../../actions/userActions';
 const LoginPage = ({history}) => {
 
     const [email,setEmail] = useState("");
-    const [password,setPassword]= useState(""); 
-    // const [error,setError] = useState(false);
-    // const [loading,setLoading] = useState(false);    
+    const [password,setPassword]= useState("");    
 
     const dispatch  = useDispatch();
     const userLogin  = useSelector((state)=> state.userLogin);
@@ -26,8 +24,11 @@ const LoginPage = ({history}) => {
 
     useEffect(() => {
   if(userInfo){
-    history.push('/category');
+    history.push('/alldo');
   }
+  // else if(!userInfo){
+  //   history.push('/')
+  // }
 }, [history,userInfo]);
 
 console.log(userInfo);
