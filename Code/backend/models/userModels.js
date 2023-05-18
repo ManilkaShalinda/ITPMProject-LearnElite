@@ -13,7 +13,7 @@ const useSchema = mongoose.Schema(
          password:{
             type:String,
         },
-        isAdmin:{
+        isUser:{
             type: Boolean,
             default: false,
         },

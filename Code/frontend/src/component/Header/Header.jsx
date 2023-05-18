@@ -19,7 +19,6 @@ const Header = ({history,setSearch}) => {
 
   const logoutHandler=()=>{
     dispatch(logout());
-    history.push('/');
   }
 
   return (
@@ -46,7 +45,7 @@ const Header = ({history,setSearch}) => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
+            <Nav.Link href="#action1"><Link to='/home'>Home</Link></Nav.Link>
             <Nav.Link href="#action2">Courses</Nav.Link>
             <Nav.Link href="#action2">Events</Nav.Link>
             <Nav.Link href="#action2">Counseling</Nav.Link>
