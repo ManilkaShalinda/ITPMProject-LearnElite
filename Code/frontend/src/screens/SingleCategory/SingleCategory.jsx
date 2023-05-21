@@ -1,44 +1,40 @@
-
 import React, { useEffect, useState } from "react";
-import MainScreen from "../../component/MainScreen";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Button, Card, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import {updateCategoryAction} from '../../actions/categoryAction'
-import Loarding from "../../component/Loarding";
-import ReactMarkdown from "react-markdown";
+import { updateCategoryAction } from "../../actions/categoryAction";
+import MainScreen from "../../components/MainScreen/MainScreen";
 
-const SingleCategory= ({ match, history }) => {
-
-  const [foodname, setFoodname] = useState();
+const SingleCategory = ({ match, history }) => {
+  const [foodname, setFoodname] = useState("");
   const [price, setPrice] = useState("");
-  const [category, setCategory] = useState();
-  const [pic, setPic] = useState();
-   const [date, setDate] = useState("");
+  const [category, setCategory] = useState("");
+  const [pic, setPic] = useState("");
+  const [date, setDate] = useState("");
+  const params = useParams();
 
+  
+  const {id} = useParams();
+   const dispatch = useDispatch();
+  const categoryUpdate = useSelector((state) => state.categoryUpdate);
+  const { loading } = categoryUpdate;
 
-  const dispatch = useDispatch();
-
-  const categoryUpdate = useSelector((state) => state.categoryUpdate );
-  const { loading } = categoryUpdate ;
-
-
-  const deleteHandler = (id) => {
-   
-  };
 
   useEffect(() => {
     const fetching = async () => {
-      const { data } = await axios.get(`/api/category/${match.params.id}`);
-
-    setFoodname(data.foodname);
-    setPrice(data.price);
-    setCategory(data.category);
-    setPic(data.pic);
-    setDate(data.updatedAt);
+      try {
+        const { data } = await axios.get(`/api/category/${id}`);
+        setFoodname(data.foodname);
+        setPrice(data.price);
+        setCategory(data.category);
+        setPic(data.pic);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetching();
-  }, [match.params.id, date]);
+  }, [id]);
 
   const resetHandler = () => {
     setFoodname("");
@@ -49,15 +45,15 @@ const SingleCategory= ({ match, history }) => {
 
   const updateHandler = (e) => {
     e.preventDefault();
-    dispatch(updateCategoryAction(match.params.id,foodname, price, category, pic));
+    dispatch(updateCategoryAction(id, foodname, price, category, pic));
     if (!foodname || !price || !category || !pic) return;
-    resetHandler();
-    history.push("/category");
+    // resetHandler();
+    // history.push("/category");
   };
 
   const postDetails = (pics) => {
     if (!pics) {
-    
+      // Handle empty picture
     }
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
@@ -77,69 +73,61 @@ const SingleCategory= ({ match, history }) => {
           console.log(err);
         });
     } else {
-     
+      // Handle unsupported file types
     }
   };
 
-
   return (
     <>
-     <MainScreen titles="Update">
-             <Card>
-        <Card.Header >Update Post</Card.Header>
+    <MainScreen>
+      <Card>
+        <Card.Header>Update Product</Card.Header>
         <Card.Body>
           <Form onSubmit={updateHandler}>
-           
             <Form.Group controlId="title">
-              <Form.Label>Title</Form.Label>
+              <Form.Label>Food Name</Form.Label>
               <Form.Control
                 type="title"
                 value={foodname}
-                placeholder="Enter title"
+                placeholder="Enter the food name"
                 onChange={(e) => setFoodname(e.target.value)}
               />
             </Form.Group>
 
-          <Form.Group controlId="title">
-              <Form.Label>Description</Form.Label>
+            <Form.Group controlId="title">
+              <Form.Label>Food Price</Form.Label>
               <Form.Control
                 type="title"
                 value={price}
-                placeholder="Enter the Description"
+                placeholder="Enter the price"
                 onChange={(e) => setPrice(e.target.value)}
               />
             </Form.Group>
-        
 
             <Form.Group controlId="content">
-              <Form.Label>Type</Form.Label>
+              <Form.Label>Category</Form.Label>
               <Form.Control
                 type="content"
                 value={category}
-                placeholder="Enter the Type"
+                placeholder="Enter the Category"
                 onChange={(e) => setCategory(e.target.value)}
               />
             </Form.Group>
-            
-             <Form.Group controlId="pic">
-            <Form.Label>Picture</Form.Label>
-            <Form.Control
-              onChange={(e) => postDetails(e.target.files[0])}
-              id="custom-file"
-              type="file"
-              label="Upload Profile Picture"
-              custom
-            />
-          </Form.Group>
 
+            <Form.Group controlId="pic">
+              <Form.Label>Profile Picture</Form.Label>
+              <Form.Control
+                onChange={(e) => postDetails(e.target.files[0])}
+                id="custom-file"
+                type="file"
+                label="Upload Profile Picture"
+                custom
+              />
+            </Form.Group>
 
-            {loading && <Loarding size={50} />}
             <Button type="submit" variant="primary" className="my-4">
-             Update
+              Update
             </Button>
-            {/* <Button className="mx-5" onClick={resetHandler} variant="danger">
-              Reset Feilds
-            </Button> */}
           </Form>
         </Card.Body>
 
@@ -147,9 +135,9 @@ const SingleCategory= ({ match, history }) => {
           Creating on - {new Date().toLocaleDateString()}
         </Card.Footer>
       </Card>
-        </MainScreen>
+      </MainScreen>
     </>
-  )
-}
+  );
+};
 
-export default SingleCategory
+export default SingleCategory;

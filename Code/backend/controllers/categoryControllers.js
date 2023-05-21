@@ -1,6 +1,6 @@
 const Category = require('../models/categoryModels');
 const asyncHandler = require('express-async-handler');
-const cloudinary = require('../utils/cloudinary');
+
 
 //Get Category controller
 const getCategory =  asyncHandler(
@@ -14,11 +14,11 @@ const getCategory =  asyncHandler(
 const  CreateCategory = asyncHandler(async (req, res) => {
   const { foodname, price, category, pic } = req.body;
 
-  if (!foodname || !price || !category || !pic) {
+  if (!foodname || !price ) {
     res.status(400);
     throw new Error("Please Fill all the feilds");
   } else {
-    const Product = new Category({ user: req.user._id, foodname,price, category, pic });
+    const Product = new Category({ foodname,price, category, pic });
 
     const createdProduct = await Product.save();
 
@@ -35,9 +35,11 @@ const getCategoryById= asyncHandler(async (req,res)=>{
      }else{
       res.status(404).json({message: "Category not found"});
      }
-     res.json(note);
+     res.json(category);
   }
 )
+
+
 
 //Update category controller
 const UpdateCategory = asyncHandler(async (req, res) => {
@@ -45,10 +47,10 @@ const UpdateCategory = asyncHandler(async (req, res) => {
 
   const product = await Category.findById(req.params.id);
 
-  if (product.user.toString() !== req.user._id.toString()) {
-    res.status(401);
-    throw new Error("You can't perform this action");
-  }
+  // if (product.user.toString() !== req.user._id.toString()) {
+  //   res.status(401);
+  //   throw new Error("You can't perform this action");
+  // }
 
   if (product) {
     product.foodname = foodname;
@@ -68,10 +70,10 @@ const UpdateCategory = asyncHandler(async (req, res) => {
 const DeleteCategory= asyncHandler(async (req, res) => {
   const product = await Category.findById(req.params.id);
 
-  if ( product.user.toString() !== req.user._id.toString()) {
-    res.status(401);
-    throw new Error("You can't perform this action");
-  }
+  // if ( product.user.toString() !== req.user._id.toString()) {
+  //   res.status(401);
+  //   throw new Error("You can't perform this action");
+  // }
 
   if ( product) {
     await  product.remove();
@@ -84,7 +86,8 @@ const DeleteCategory= asyncHandler(async (req, res) => {
 
 
 //export all functions
-module.exports = {getCategory,
+module.exports = {
+    getCategory,
      CreateCategory,
      getCategoryById,
      UpdateCategory,

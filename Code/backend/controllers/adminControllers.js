@@ -1,50 +1,77 @@
+const Admin = require('../models/adminModel');
+const User = require('../models/userModel');
 const asyncHandler = require('express-async-handler');
-const Admin = require('../models/adminModels');
-const genarateToken = require('../utils/genarateToken');
+const genarateToken = require('../utils/genarteToken');
 
-const registerAdmin = asyncHandler(async(req, res) =>{
-    const { name,email,password,pic} = req.body;
-    const adminExists = await Admin.findOne({ email });
 
-    if(adminExists){
-        res.status(400);
-        throw new Error("Admin Already Exists");
+
+// Admin Register
+const registerAdmin = asyncHandler(async(req,res) =>{
+    const { name,email, password,pic }= req.body;
+
+    const adminExistes = await Admin.findOne({ email });// chech the email which was already existes or not
+
+    if(adminExistes){
+        res.status(400)
+        throw new Error('User Allready Exsits');
     }
 
+     //create a obejct called admin 
     const admin = await Admin.create({
         name,
         email,
         password,
-        pic,
-    });
+        pic
+    })
 
+    //if user doesn't already inserted create a user
     if(admin){
         res.status(201).json({
             _id:admin._id,
             name:admin.name,
-            email:admin.email,
-            isAdmin: admin.isAdmin,
+            email: admin.email,
+            isUser:admin.isUser,
             pic: admin.pic,
-            token: genarateToken(admin._id),
-        });
-      }else{
-         res.status(400)
-        throw new Error('Invalied Email or Password! ')
+            token:genarateToken(admin._id)
+        })
+    }else{
+          res.status(400)
+          throw new Error('Error Occured')
     }
-});
+})
 
-//login
+
+//Admin Login
 const authAdmin = asyncHandler(async (req,res) =>{
     const {email,password} = req.body;
+
+    let type;
+
     const admin = await Admin.findOne({email});
+    const user = await User.findOne({email});
+
+    //match the registered password and the entered passsword
     if(admin && (await admin.matchPassword(password))){
+        type = "admin";
         res.json({
             _id:admin._id,
             name:admin.name,
             email:admin.email,
-            isAdmin: admin.isAdmin,
+            isUser: admin.isUser,
             pic:admin.pic,
             token: genarateToken(admin._id),
+            type: type,
+        })
+    }else if(user && (await user.matchPassword(password))){
+        type = "user";
+        res.json({
+            _id:user._id,
+            name:user.name,
+            email:user.email,
+            isUser: user.isUser,
+            pic:user.pic,
+            token: genarateToken(user._id),
+            type: type,
         })
     }else{
         res.status(400)
@@ -52,4 +79,6 @@ const authAdmin = asyncHandler(async (req,res) =>{
     }
 });
 
-module.exports = { registerAdmin,authAdmin }
+module.exports = { registerAdmin,authAdmin };
+
+

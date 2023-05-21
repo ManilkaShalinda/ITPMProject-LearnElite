@@ -1,42 +1,42 @@
-import React, { useState } from 'react'
+import { BrowserRouter, Routes,Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './components/Header/Header';
 import './App.css';
-import Header from './component/Header/Header';
-import { BrowserRouter, Route } from 'react-router-dom'
-import Footer from './component/Footer/Footer';
-import MainPage from './screens/MainPage/MainPage';
+import Footer from './components/Footer/Footer';
+import HomePage from './screens/HomePage/HomePage';
+import UserLogin from './screens/UserLogin/UserLogin';
+import RegisterUser from './screens/RegisterUsers/RegisterUser';
+import AdminHome from './screens/AdminPages/AdminHome/AdminHome';
+import TopHome from './screens/HomePage/TopHome';
 import Category from './screens/Category/Category';
-import LoginPage from './screens/LoginPage/LoginPage';
-import RegisterPage from './screens/RegisterPage/RegisterPage';
-import CreateCategory from './screens/CreateCategory/CreateCategory';
+import CreateCategory  from './screens/CreateCategory/CreateCategory';
 import SingleCategory from './screens/SingleCategory/SingleCategory';
-import Alldonation from './screens/Donation/Alldonation';
-import Home from './component/Home/Home';
-import DonationReport from './component/report/DonationReport';
-
-
+import Report from './screens/Category/Report';
+import ReportList from './screens/Category/ReportList';
+import HomeDonation from './screens/HomeDonation/HomeDonation';
 
 const App = () => {
- const [search,setSearch] =  useState ("") 
- console.log(search);
-  return (
-    <BrowserRouter>
-    <Header setSearch={setSearch}/>
-    
-      <main >
-         <Route path='/ui' component={MainPage}  />  
-         <Route path='/login' component={LoginPage} />  
-         <Route path='/register' component={RegisterPage} />  
-         <Route path='/category' component={()=> <Category search={search} /> } />  
-         <Route path='/categorycreate' component={CreateCategory} />  
-         <Route path='/categoryUpdate/:id' component={SingleCategory} />
-         <Route path='/alldo' component={Alldonation} />
-         <Route path='/' component={Home} />
-         <Route path='/donationreport' component={DonationReport} />
-
-      </main>
-    <Footer/>
-    </BrowserRouter>
-  )
+  
+  return <div>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/adminhome" element={<AdminHome />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/userlogin" element={<UserLogin />} />
+          <Route path="/userregister" element={<RegisterUser />} />
+          <Route path="/adminhome" element={<AdminHome />} />
+          <Route path="/tophome" element={<TopHome />} />
+          <Route path="/category" element={<Category />} />
+          <Route path="/categorycreate" element={<CreateCategory />} />
+          <Route path="/categoryUpdate/:id" element={<SingleCategory />} />
+          <Route path="/report" element={<Report />} />
+          <Route path="/reportList" element={<ReportList />} />
+          <Route path='/homedonation' element={<HomeDonation />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </div>;
 }
 
-export default App
+export default App;
