@@ -1,10 +1,12 @@
 import React,{useState,useEffect} from 'react'
-import MainScreen from '../../component/MainScreen'
+import MainScreen from '../../components/MainScreen/MainScreen'
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Form } from "react-bootstrap";
-import Loarding from '../../component/Loarding';
+import Loarding from '../../components/LoadingPages/LoadingPages'
 import { createCategoryAction } from '../../actions/categoryAction';
-import ErrorMessage from '../../component/ErrorMessage';
+import ErrorMessage from '../../components/Errormeesages/ErrorMessages';
+import { Link } from 'react-router-dom';
+
 
 const CreateCategory = ({history}) => {
 
@@ -13,15 +15,13 @@ const CreateCategory = ({history}) => {
   const [category, setCategory] = useState("");
   const [pic, setPic] = useState("");
   const [picMessage, setPicMessage] = useState(null);
- 
-
   const dispatch = useDispatch();
 
-  const categoryCreate = useSelector((state) => state.categoryCreate);
-  const { loading, error, product} = categoryCreate;
+    const categoryCreate = useSelector((state) => state.categoryCreate);
+    const { loading, error, product} = categoryCreate;
 
-  console.log( product);
 
+  
   const resetHandler = () => {
     setFoodname("");
     setPrice("");
@@ -29,8 +29,7 @@ const CreateCategory = ({history}) => {
     setPic("");
   };
 
-
-const postDetails = (pics) => {
+ const postDetails = (pics) => {
     if (!pics) {
       return setPicMessage("Please Select an Image");
     }
@@ -65,23 +64,24 @@ const postDetails = (pics) => {
     history.push("/category");
   };
 
-  
 
-  useEffect(() => {}, []);
   return (
-  <div>
-    <MainScreen titles="Donation Post">
+   <div>
+<MainScreen> 
+<Link to='/category'>
+            <Button className='mb-5' style={{marginLeft: 3,marginBottom:3}} size='sm'>View Details</Button>
+        </Link> 
       <Card>
-        <Card.Header >Post New Donation</Card.Header>
+        <Card.Header >Add New Donation</Card.Header>
         <Card.Body>
           <Form onSubmit={submitHandler}>
            
             <Form.Group controlId="title">
-              <Form.Label>Title</Form.Label>
+              <Form.Label>Donation Title</Form.Label>
               <Form.Control
                 type="title"
                 value={foodname}
-                placeholder="Enter title"
+                placeholder="Enter the food name"
                 onChange={(e) => setFoodname(e.target.value)}
               />
             </Form.Group>
@@ -91,7 +91,7 @@ const postDetails = (pics) => {
                <Form.Control
                 type="title"
                 value={price}
-                placeholder="Enter the donation description"
+                placeholder="Enter the price"
                 onChange={(e) => setPrice(e.target.value)}
               />
             </Form.Group>
@@ -100,10 +100,10 @@ const postDetails = (pics) => {
      <Form.Label>Donation Type</Form.Label>
      <div class="form-group col-lg flex-column d-flex" style={{}}>
       <select id="inputState" class="form-control" onChange={(e)=>{setCategory(e.target.value);}} required>
-        <option selected placeholder="">Choose Type...</option>
-        <option>Type 1</option>
-        <option>Type 2</option>
-        <option>Type 3</option>
+        <option selected placeholder="">Choose Product...</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
       </select>
     </div>
      </Form.Group>
@@ -134,11 +134,11 @@ const postDetails = (pics) => {
             />
           </Form.Group>
 
-        {loading && <Loarding size={50} />}
-            <Button type="submit" variant="primary" className="my-4">
-            Post Donation
+        {/* {loading && <Loarding size={50} />} */}
+            <Button type="submit" variant="primary" className="my-4" size='sm'>
+            Create Donation
             </Button>
-            <Button className="mx-5" onClick={resetHandler} variant="danger">
+            <Button className="mx-5" onClick={resetHandler} variant="danger" size='sm'>
             Reset Feilds
             </Button>
         </Form>
@@ -149,7 +149,7 @@ const postDetails = (pics) => {
        </Card.Footer>
 
      </Card>
-    </MainScreen>
+ </MainScreen>  
   </div>
   )
 }
